@@ -1,2 +1,27 @@
-<h1>Portfolios#list</h1>
-<p>Find me in app/views/portfolios/list.html.erb</p>
+<h1>Portfolios</h1>
+<%= link_to 'New', {action: :new}, class: 'btn btn-success' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @portfolios.each do |portfolio| %>
+      <tr>
+        <td> <%= portfolio.name %></td>
+        <td><%= link_to 'Edit', {action: :edit, id: portfolio.id}, class: 'btn btn-primary' %></td>
+        <td><%= button_to 'Delete', { action: :destroy, id: portfolio.id}, class: 'btn btn-danger', method: :delete %></td>
+      </tr>
+    <% end %>
+    <% if @portfolios.blank? %>
+      <tr>
+        <td colspan="3"> No portfolios...</td>
+      </tr>    
+    <% end %>    
+  </tbody>
+</table>
+
+
