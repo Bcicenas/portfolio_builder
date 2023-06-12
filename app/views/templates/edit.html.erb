@@ -1,0 +1,7 @@
+<h1>Edit template</h1>
+<%= form_with model: @template, multipart: true  do |form| %>
+  <%= render 'form', form: form %>
+  <div>
+    <%= form.submit 'Update', class: 'btn btn-success' %>
+  </div>
+<% end %>

@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }, path: 'users', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register', sign_up: 'register' }
 
   root "portfolios#index"
-  get '/portfolios', to: 'portfolios#index'
+  get '/portfolios', to: 'portfolios#list'
   get '/portfolios/list', to: 'portfolios#list'
+  get '/templates', to: 'templates#list'
+  get '/templates/list', to: 'templates#list'  
   resources :portfolios
+  resources :templates
+
   # resolve('Portfolio') { [:portfolio] }
   # get '/portfolios/new', to: 'portfolios#new'
   # put '/portfolios/create', to: 'portfolios#create'

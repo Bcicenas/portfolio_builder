@@ -1,0 +1,27 @@
+<h1>Templates</h1>
+<%= link_to 'New', {action: :new}, class: 'btn btn-success' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @templates.each do |template| %>
+      <tr>
+        <td> <%= template.name %></td>
+        <td><%= link_to 'Edit', {action: :edit, id: template.id}, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', { action: :destroy, id: template.id}, class: 'btn btn-danger', data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    <% if @templates.blank? %>
+      <tr>
+        <td colspan="3"> No templates...</td>
+      </tr>    
+    <% end %>    
+  </tbody>
+</table>
+
+

@@ -1,9 +1,11 @@
 class PortfoliosController < ApplicationController
+  layout false, only: [:index]
   before_action :authenticate_user!, except: [:index]
 
   before_action :find_portfolio, only: [:edit, :update, :destroy]
 
   def index
+    @portfolio = Portfolio.first
   end
 
   def list
@@ -17,8 +19,8 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = Portfolio.new(portfolio_params)
     if @portfolio.save
-      redirect_to @portfolio
       flash[:notice] = 'Portfolio was successfully created'
+      redirect_to(portfolios_path) && (return false)
     else
       flash[:alert] = 'Portfolio was not created'
       render(:new) && (return false)
@@ -31,7 +33,7 @@ class PortfoliosController < ApplicationController
   def update
     @portfolio.assign_attributes(portfolio_params)
     if @portfolio.save
-      redirect_to @portfolio
+      redirect_to(portfolios_path) && (return false)
       flash[:notice] = 'Portfolio was successfully updated'
     else
       flash[:alert] = 'Portfolio was not updated'
@@ -41,12 +43,11 @@ class PortfoliosController < ApplicationController
 
   def destroy
     if @portfolio.destroy
-      redirect_to @portfolio
       flash[:notice] = 'Portfolio was successfully deleted'
     else
       flash[:alert] = 'Portfolio was not deleted'
-      render(:edit) && (return false) 
-    end    
+    end
+    redirect_to(portfolios_path) && (return false)    
   end
 
   private
@@ -57,6 +58,6 @@ class PortfoliosController < ApplicationController
   end
 
   def portfolio_params
-    params.require(:portfolio).permit(:name)
+    params.require(:portfolio).permit(:name, :template_id)
   end  
 end
