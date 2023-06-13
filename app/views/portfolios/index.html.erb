@@ -1,1 +1,6 @@
-<%#= render plain: @portfolio.filedata.html_safe %>
+<% if user_signed_in? %>
+  <div style="background-color: black; color: white; position: absolute; z-index: 9999; top: 0; right: 0;">
+    <%= link_to 'Back to portfolios', portfolios_path %>
+  </div>
+<% end %>
+<%= render inline: portfolio_index(@portfolio) %>

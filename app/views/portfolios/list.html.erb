@@ -1,5 +1,14 @@
 <h1>Portfolios</h1>
-<%= link_to 'New', {action: :new}, class: 'btn btn-success' %>
+<%= link_to 'New', {action: :new}, class: 'btn btn-success mb-3' %>
+<%= form_tag action: :change_default_portfolio do %>
+  <%= label_tag 'Default portfolio' %>
+  <div class="form-group">
+    <%= select_tag 'portfolio_id', options_for_select(portfolio_list, @default_portfolio), class: 'form-select' %>
+  </div>
+  <br/>
+  <%= submit_tag 'Change', class: 'btn btn-primary' %>
+<% end %>
+<br/>
 <table class="table">
   <thead>
     <tr>
@@ -23,5 +32,3 @@
     <% end %>    
   </tbody>
 </table>
-
-

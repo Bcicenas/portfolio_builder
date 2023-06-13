@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   # devise_for :users
-  devise_for :users, controllers: { sessions: 'users/sessions' }, path: 'users', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register', sign_up: 'register' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }, path: '/', path_names: { sign_in: 'login', sign_out: 'logout' }
 
   root "portfolios#index"
   get '/portfolios', to: 'portfolios#list'
   get '/portfolios/list', to: 'portfolios#list'
   get '/templates', to: 'templates#list'
-  get '/templates/list', to: 'templates#list'  
+  get '/templates/list', to: 'templates#list'
+  post '/portfolios/change_default_portfolio', to: 'portfolios#change_default_portfolio'
+
   resources :portfolios
   resources :templates
 

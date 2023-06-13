@@ -5,11 +5,15 @@ class PortfoliosController < ApplicationController
   before_action :find_portfolio, only: [:edit, :update, :destroy]
 
   def index
-    @portfolio = Portfolio.first
+    @portfolio = Portfolio.where(use_as_index_page: 1).first
+    return if @portfolio
+    flash[:alert] = 'No portfolio is being used as index page'
+    redirect_to(portfolios_path) && (return false)
   end
 
   def list
     @portfolios = Portfolio.all
+    @default_portfolio = Portfolio.where(use_as_index_page: 1).first
   end
 
   def new
@@ -48,6 +52,14 @@ class PortfoliosController < ApplicationController
       flash[:alert] = 'Portfolio was not deleted'
     end
     redirect_to(portfolios_path) && (return false)    
+  end
+
+  def change_default_portfolio
+    Portfolio.where(use_as_index_page: 1).update_all(use_as_index_page: 0)
+    @portfolio = Portfolio.where(id: params[:portfolio_id]).first
+    @portfolio.update_attribute(:use_as_index_page, 1)
+    flash[:notice] = 'Default Portfolio was successfully Changed'
+    redirect_to(portfolios_path) && (return false)
   end
 
   private
