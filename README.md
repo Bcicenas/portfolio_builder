@@ -1,29 +1,11 @@
-<<<<<<< HEAD
-# README
+# Portfolio builder
+Rails application for building portfolio. Great for single page websites.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# To do
+- Upload images
+- Use css files with html templates
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# portfolio_builder
-Portfolio builder for creating
->>>>>>> bdf77b1a4c9def9639aa0b5fe0cd348bd7a3a6cc
