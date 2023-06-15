@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+  include ActiveStorage::SetCurrent
   layout false, only: [:index]
   before_action :authenticate_user!, except: [:index]
 

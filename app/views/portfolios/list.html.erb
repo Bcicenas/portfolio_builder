@@ -3,10 +3,10 @@
 <%= form_tag action: :change_default_portfolio do %>
   <%= label_tag 'Default portfolio' %>
   <div class="form-group">
-    <%= select_tag 'portfolio_id', options_for_select(portfolio_list, @default_portfolio), class: 'form-select' %>
+    <%= select_tag 'portfolio_id', options_for_select(portfolio_list, @default_portfolio), class: 'form-select', disabled: portfolio_list.blank? %>
   </div>
   <br/>
-  <%= submit_tag 'Change', class: 'btn btn-primary' %>
+  <%= submit_tag 'Change', class: 'btn btn-primary', disabled: portfolio_list.blank? %>
 <% end %>
 <br/>
 <table class="table">
